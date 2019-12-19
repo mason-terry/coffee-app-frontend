@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <v-content>
     <h1>Search By Zipcode</h1>
     <input
       v-model='zipcode'
       placeholder='Zipcode'
     />
     <button @click='retrieveShopsByZipcode'>Search</button>
+    <button @click='retrieveShopsByLocation'>Get Shops By Location</button>
     <div
       v-for='shop in shops'
       :key='shop._id'
@@ -18,14 +19,14 @@
         style='max-width: 300px;'
       />
     </div>
-  </div>
+  </v-content>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'Base',
+  name: 'Main',
   data: () => ({
     zipcode: ''
   }),
@@ -33,14 +34,30 @@ export default {
     ...mapState('shops', ['shops'])
   },
   methods: {
-    ...mapActions('shops', ['fetchShopsByZipcode']),
+    ...mapActions('shops', ['fetchShopsByZipcode', 'fetchShopsByLocation']),
     async retrieveShopsByZipcode() {
       await this.fetchShopsByZipcode(this.zipcode)
       this.zipcode = ''
+    },
+    async retrieveShopsByLocation() {
+      if (navigator.geolocation) {
+        await navigator.geolocation.getCurrentPosition(this.getLatLng)
+      } else {
+        alert(`Something didn't go correctly`)
+      }
+    },
+    async getLatLng(pos) {
+      const lng = pos.coords.longitude
+      const lat = pos.coords.latitude
+      const payload = { lat, lng }
+      await this.fetchShopsByLocation(payload)
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang='css'>
+button {
+  margin: 5px;
+}
 </style>

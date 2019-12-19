@@ -1,19 +1,16 @@
 <template>
-  <div>
-    <Base msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-app>
+    <Main />
+  </v-app>
 </template>
 
 <script>
-import Base from './components/Base'
+import Main from './components/main'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    Base
+    Main
   }
 }
 </script>
-
-<style>
-</style>

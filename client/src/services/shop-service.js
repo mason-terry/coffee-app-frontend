@@ -4,7 +4,7 @@ export default {
   fetchShopsByZipcode(zipcode) {
     return Api.get(`/shops/zipcode/${zipcode}`)
   },
-  fetchShopsByCurrentLocation(lat, long) {
-    return Api.get(`/shops/location/${lat}/${long}`)
+  fetchShopsByCurrentLocation(lat, lng) {
+    return Api.get(`/shops/location/${lat}/${lng}`)
   }
 }
