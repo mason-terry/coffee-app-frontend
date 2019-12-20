@@ -1,32 +1,41 @@
 <template>
   <v-content>
-    <h1>Search By Zipcode</h1>
-    <input
-      v-model='zipcode'
-      placeholder='Zipcode'
-    />
-    <button @click='retrieveShopsByZipcode'>Search</button>
-    <button @click='retrieveShopsByLocation'>Get Shops By Location</button>
+    <h1>Coffee Power</h1>
+    <h3>Find Coffee</h3>
+    <v-form>
+      <v-text-field
+        v-model="zipcode"
+        placeholder="zipcode"
+      ></v-text-field>
+      <v-btn
+        @click='retrieveShopsByZipcode'
+        outlined
+        color="blue"
+      >Search</v-btn>
+      <v-btn
+        @click='retrieveShopsByLocation'
+        outlined
+        color="blue"
+      >Get Shops By Location</v-btn>
+    </v-form>
     <div
       v-for='shop in shops'
       :key='shop._id'
     >
-      <h3>{{ shop.name }}</h3>
-      <p>{{ shop.display_phone }}</p>
-      <p><span>{{ shop.location.display_address[0] }}</span>&nbsp;<span>{{ shop.location.display_address[1] }}</span>&nbsp;<span>{{ shop.location.display_address[2] }}</span></p>
-      <img
-        :src='shop.image_url'
-        style='max-width: 300px;'
-      />
+      <ShopCard :shop="shop" />
     </div>
   </v-content>
 </template>
 
 <script>
+import ShopCard from '../components/shop-card'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'Main',
+  name: 'CPBase',
+  components: {
+    ShopCard
+  },
   data: () => ({
     zipcode: ''
   }),

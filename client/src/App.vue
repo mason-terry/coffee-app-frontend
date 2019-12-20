@@ -1,16 +1,16 @@
 <template>
   <v-app>
-    <Main />
+    <CPBase />
   </v-app>
 </template>
 
 <script>
-import Main from './components/main'
+import CPBase from './views/cp-base'
 
 export default {
   name: 'App',
   components: {
-    Main
+    CPBase
   }
 }
 </script>
