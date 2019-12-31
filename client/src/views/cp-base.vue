@@ -1,32 +1,30 @@
 <template>
-  <v-container fluid class="container">
-    <v-content>
-      <h1>Coffee Power</h1>
-      <h3>Find Coffee</h3>
-      <v-form>
-        <v-text-field
-          v-model="zipcode"
-          placeholder="zipcode"
-        ></v-text-field>
-        <v-btn
-          @click='retrieveShopsByZipcode'
-          outlined
-          color="blue"
-        >Search</v-btn>
-        <v-btn
-          @click='retrieveShopsByLocation'
-          outlined
-          color="blue"
-        >Get Shops By Location</v-btn>
-      </v-form>
-      <div
-        v-for='shop in shops'
-        :key='shop._id'
-      >
-        <ShopCard :shop="shop" />
-      </div>
-    </v-content>
-  </v-container>
+  <v-content class="content">
+    <!-- <h3>Find Coffee</h3>
+    <v-form>
+      <v-text-field
+        v-model="zipcode"
+        placeholder="zipcode"
+      ></v-text-field>
+      <v-btn
+        @click='retrieveShopsByZipcode'
+        outlined
+        color="blue"
+      >Search</v-btn>
+      <v-btn
+        @click='retrieveShopsByLocation'
+        outlined
+        color="blue"
+      >Get Shops By Location</v-btn>
+    </v-form> -->
+    <h1 v-if="!shops.length">Find coffee shops where you can recharge yourself and your laptop!</h1>
+    <div
+      v-for='shop in shops'
+      :key='shop._id'
+    >
+      <ShopCard :shop="shop" />
+    </div>
+  </v-content>
 </template>
 
 <script>
@@ -34,7 +32,7 @@ import ShopCard from '../components/shop-card'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'CPBase',
+  name: 'cp-base',
   components: {
     ShopCard
   },
@@ -55,7 +53,7 @@ export default {
           throw err
         }
       } else {
-        alert ('Please enter a valid zipcode')  
+        alert('Please enter a valid zipcode')
       }
     },
     async retrieveShopsByLocation() {
@@ -78,5 +76,13 @@ export default {
 <style scoped lang='css'>
 button {
   margin: 5px;
+}
+h1 {
+  font-family: 'Bungee';
+  text-align: center;
+  color: #6060ff;
+}
+.content {
+  margin: 0 auto;
 }
 </style>
