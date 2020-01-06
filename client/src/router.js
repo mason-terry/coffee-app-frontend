@@ -20,6 +20,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: () => import('./views/cp-login.vue')
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: () => import('./views/cp-search.vue')
     }
   ]
 })

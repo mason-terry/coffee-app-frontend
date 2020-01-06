@@ -10,7 +10,7 @@
         class="icons"
       >fa fa-user</v-icon>
     </v-btn>
-    <v-btn>
+    <v-btn @click="goToSearch">
       <v-icon
         color="#6060FF"
         class="icons"
@@ -31,14 +31,21 @@ import { mapActions } from 'vuex'
 export default {
   name: 'bot-nav',
   methods: {
-    ...mapActions('shops', ['fetchShopsByLocation']),
+    ...mapActions('shops', ['fetchShopsByLocation', 'setLoadingValue', 'resetShopsValue']),
     goToProfile() {
       this.$router.push('/profile')
     },
+    goToSearch() {
+      this.$router.push('/search')
+    },
     async retrieveShopsByLocation() {
+      this.resetShopsValue()
+      this.setLoadingValue(true)
+      if (this.$router.history.current.name !== 'Main') this.$router.push('/')
       if (navigator.geolocation) {
         await navigator.geolocation.getCurrentPosition(this.getLatLng)
       } else {
+        this.setLoadingValue(false)
         alert(`Please turn on your location services.`)
       }
     },

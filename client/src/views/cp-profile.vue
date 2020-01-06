@@ -1,5 +1,5 @@
 <template>
-  <h1>Profile</h1>
+  <v-content>Profile</v-content>
 </template>
 
 <script>
@@ -9,7 +9,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  margin-top: 100px;
-}
 </style>
