@@ -33,10 +33,14 @@ export default {
   methods: {
     ...mapActions('shops', ['fetchShopsByLocation', 'setLoadingValue', 'resetShopsValue']),
     goToProfile() {
-      this.$router.push('/profile')
+      if (this.$router.history.current.name !== 'Profile') {
+        this.$router.push('/profile')
+      }
     },
     goToSearch() {
-      this.$router.push('/search')
+      if (this.$router.history.current.name !== 'Search') {
+        this.$router.push('/search')
+      }
     },
     async retrieveShopsByLocation() {
       this.resetShopsValue()

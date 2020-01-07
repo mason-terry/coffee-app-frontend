@@ -1,8 +1,8 @@
 import { Api } from './api-service'
 
 export default {
-  fetchUsers() {
-    return Api.get('/users')
+  createUser(payload) {
+    return Api.post('/users', payload)
   },
   userLogin(payload) {
     return Api.post('/users/login', payload)
