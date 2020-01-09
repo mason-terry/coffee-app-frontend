@@ -1,25 +1,28 @@
 <template>
   <v-content class="content">
-    <h1>Profile</h1>
-    <div class="avatar">
-      <v-avatar
-        color="#6060ff"
-        height="100"
-        width="100"
-      >
-        <v-icon color=#ffffff>fa fa-user</v-icon>
-      </v-avatar>
+    <div v-if="currentUser.name">
+      <div class="avatar">
+        <v-avatar
+          color="#6060ff"
+          height="100"
+          width="100"
+        >
+          <v-icon color=#ffffff>fa fa-user</v-icon>
+        </v-avatar>
+      </div>
+      <p><strong>Name:</strong> {{ currentUser.name }}</p>
+      <p><strong>Username:</strong> {{ currentUser.username }}</p>
+      <p><strong>Email:</strong> {{ currentUser.email }}</p>
+      <p><strong>Favorites:</strong> {{ currentUser.favorites }}</p>
     </div>
-    <p>Name: {{ currentUser.name }}</p>
-    <p>Username: {{ currentUser.username }}</p>
-    <p>Email: {{ currentUser.email }}</p>
-    <p>Favorites: {{ currentUser.favorites }}</p>
-    <v-btn
-      v-if="!user"
-      @click="goToLogin"
-      color="#6060ff"
-      outlined
-    >Login</v-btn>
+    <div v-if="!currentUser.name">
+      <h1>Please login</h1>
+      <v-btn
+        @click="goToLogin"
+        color="#6060ff"
+        outlined
+      >Login</v-btn>
+    </div>
   </v-content>
 </template>
 
@@ -51,8 +54,5 @@ export default {
 .avatar {
   text-align: center;
   margin: 10px;
-}
-h1 {
-  font-family: 'Bungee';
 }
 </style>

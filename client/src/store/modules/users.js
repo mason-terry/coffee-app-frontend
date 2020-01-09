@@ -18,7 +18,6 @@ export default {
     async login({ commit }, payload) {
       const response = await UserService.userLogin(payload)
       const user = response.data.user
-      console.log('user', user)
       commit('setCurrentUser', user)
     },
     async createUser({ commit }, payload) {

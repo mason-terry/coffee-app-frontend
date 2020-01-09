@@ -20,5 +20,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+h1 {
+  font-family: 'Bungee';
+  text-align: center;
+  color: #6060ff;
+  padding-top: 180px;
+}
 </style>

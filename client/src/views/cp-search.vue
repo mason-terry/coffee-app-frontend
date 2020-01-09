@@ -53,10 +53,4 @@ export default {
   width: 400px;
   margin: 0 auto;
 }
-h1 {
-  font-family: 'Bungee';
-  text-align: center;
-  color: #6060ff;
-  padding-top: 180px;
-}
 </style>

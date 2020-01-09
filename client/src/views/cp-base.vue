@@ -45,12 +45,6 @@ export default {
 </script>
 
 <style scoped lang='css'>
-h1 {
-  font-family: 'Bungee';
-  text-align: center;
-  color: #6060ff;
-  padding: 180px 0;
-}
 .content {
   width: 400px;
   margin: 0 auto;

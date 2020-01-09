@@ -118,7 +118,4 @@ export default {
   margin: 0 auto;
   color: #6060ff;
 }
-h1 {
-  font-family: 'Bungee';
-}
 </style>
