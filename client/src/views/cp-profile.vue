@@ -17,11 +17,13 @@
     </div>
     <div v-if="!currentUser.name">
       <h1>Please login</h1>
-      <v-btn
-        @click="goToLogin"
-        color="#6060ff"
-        outlined
-      >Login</v-btn>
+      <div class="button">
+        <v-btn
+          @click="goToLogin"
+          color="#6060ff"
+          outlined
+        >Login</v-btn>
+      </div>
     </div>
   </v-content>
 </template>
@@ -54,5 +56,8 @@ export default {
 .avatar {
   text-align: center;
   margin: 10px;
+}
+.button {
+  text-align: center;
 }
 </style>

@@ -118,4 +118,7 @@ export default {
   margin: 0 auto;
   color: #6060ff;
 }
+h1 {
+  padding: 0;
+}
 </style>
