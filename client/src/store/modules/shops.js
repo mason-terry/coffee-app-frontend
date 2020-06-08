@@ -4,7 +4,8 @@ export default {
   namespaced: true,
   state: {
     shops: [],
-    loading: false
+    loading: false,
+    errorMessage: undefined
   },
   mutations: {
     setShops(state, shops) {
@@ -12,6 +13,9 @@ export default {
     },
     setLoadingValue(state, val) {
       state.loading = val
+    },
+    setErrorMessage(state, message) {
+      state.errorMessage = message
     }
   },
   actions: {
@@ -33,6 +37,9 @@ export default {
     },
     resetShopsValue({ commit }) {
       commit('setShops', [])
+    },
+    setErrorMessage({ commit }, message) {
+      commit('setErrorMessage', message)
     }
   }
 }

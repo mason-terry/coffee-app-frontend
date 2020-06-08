@@ -31,7 +31,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'bot-nav',
   methods: {
-    ...mapActions('shops', ['fetchShopsByLocation', 'setLoadingValue', 'resetShopsValue']),
+    ...mapActions('shops', ['fetchShopsByLocation', 'setLoadingValue', 'resetShopsValue', 'setErrorMessage']),
     goToProfile() {
       if (this.$router.history.current.name !== 'Profile') {
         this.$router.push('/profile')
@@ -47,7 +47,7 @@ export default {
       this.setLoadingValue(true)
       if (this.$router.history.current.name !== 'Main') this.$router.push('/')
       if (navigator.geolocation) {
-        await navigator.geolocation.getCurrentPosition(this.getLatLng)
+        await navigator.geolocation.getCurrentPosition(this.getLatLng, this.error, { maximumAge: 60000, timeout: 5000, enableHighAccuracy: true })
       } else {
         this.setLoadingValue(false)
         alert(`Please turn on your location services.`)
@@ -58,6 +58,10 @@ export default {
       const lat = pos.coords.latitude
       const payload = { lat, lng }
       await this.fetchShopsByLocation(payload)
+    },
+    async error() {
+      this.setLoadingValue(false)
+      this.setErrorMessage('We are having trouble finding you...')
     }
   }
 }

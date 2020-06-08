@@ -4,7 +4,8 @@ export default {
   namespaced: true,
   state: {
     userToken: undefined,
-    currentUser: {}
+    currentUser: {},
+    errorMessage: undefined
   },
   mutations: {
     setUserToken(state, token) {
@@ -12,13 +13,20 @@ export default {
     },
     setCurrentUser(state, user) {
       state.currentUser = user
+    },
+    setErrorMessage(state, message) {
+      state.errorMessage = message
     }
   },
   actions: {
     async login({ commit }, payload) {
       const response = await UserService.userLogin(payload)
-      const user = response.data.user
-      commit('setCurrentUser', user)
+      if (!response.data.success) {
+          commit('setErrorMessage', response.data.message)
+      } else {
+        const user = response.data.user
+        commit('setCurrentUser', user)
+      }
     },
     async createUser({ commit }, payload) {
       const response = await UserService.createUser(payload)

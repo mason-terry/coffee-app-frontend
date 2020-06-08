@@ -1,6 +1,6 @@
 <template>
   <v-content class="content">
-    <h1 v-if="!shops.length && !loading">Find <v-icon
+    <h1 v-if="!shops.length && !loading && !errorMessage">Find <v-icon
         color="#6060ff"
         x-large
       >fa fa-coffee</v-icon> shops where you can recharge yourself and your <v-icon
@@ -8,6 +8,7 @@
         x-large
       >fa fa-laptop</v-icon>
     </h1>
+    <p v-if="errorMessage" style="color: #ff0000">{{ errorMessage }}</p>
     <div v-if="loading">
       <h1>Searching...</h1>
       <v-progress-linear
@@ -39,7 +40,7 @@ export default {
     zipcode: ''
   }),
   computed: {
-    ...mapState('shops', ['shops', 'loading'])
+    ...mapState('shops', ['shops', 'loading', 'errorMessage'])
   }
 }
 </script>

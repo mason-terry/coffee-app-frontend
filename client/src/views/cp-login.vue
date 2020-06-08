@@ -12,6 +12,7 @@
           type="password"
           placeholder="Password"
         ></v-text-field>
+        <p style="color: #ff0000">{{ errorMessage }}</p>
         <v-btn
           color="#6060ff"
           outlined
@@ -62,7 +63,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'cp-login',
@@ -74,6 +75,9 @@ export default {
     newUser: false,
     buttonName: 'New User'
   }),
+  computed: {
+    ...mapState('users', ['errorMessage'])
+  },
   methods: {
     ...mapActions('users', ['login', 'createUser']),
     swapUser() {
@@ -86,27 +90,21 @@ export default {
       }
     },
     async submitLogin() {
-      try {
-        const payload = { username: this.username, password: this.password }
-        await this.login(payload)
+      const payload = { username: this.username, password: this.password }
+      await this.login(payload)
+      if (!this.errorMessage) {
         this.$router.push('/profile')
-      } catch (err) {
-        throw err
       }
     },
     async addUser() {
-      try {
-        const payload = {
-          name: this.name,
-          username: this.username,
-          email: this.email,
-          password: this.password
-        }
-        await this.createUser(payload)
-        this.$router.push('/profile')
-      } catch (err) {
-        throw err
+      const payload = {
+        name: this.name,
+        username: this.username,
+        email: this.email,
+        password: this.password
       }
+      await this.createUser(payload)
+      this.$router.push('/profile')
     }
   }
 }
