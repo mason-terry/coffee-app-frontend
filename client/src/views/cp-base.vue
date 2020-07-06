@@ -8,7 +8,10 @@
         x-large
       >fa fa-laptop</v-icon>
     </h1>
-    <p v-if="errorMessage" style="color: #ff0000">{{ errorMessage }}</p>
+    <p
+      v-if="errorMessage"
+      style="color: #ff0000"
+    >{{ errorMessage }}</p>
     <div v-if="loading">
       <h1>Searching...</h1>
       <v-progress-linear

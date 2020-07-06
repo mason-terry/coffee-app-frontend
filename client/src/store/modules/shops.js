@@ -4,6 +4,7 @@ export default {
   namespaced: true,
   state: {
     shops: [],
+    shopDetails: undefined,
     loading: false,
     errorMessage: undefined
   },
@@ -16,6 +17,9 @@ export default {
     },
     setErrorMessage(state, message) {
       state.errorMessage = message
+    },
+    setShopDetails(state, shopDetails) {
+      state.shopDetails = shopDetails
     }
   },
   actions: {
@@ -32,11 +36,17 @@ export default {
       commit('setShops', shops)
       dispatch('setLoadingValue', false)
     },
+    async fetchShopDetails({ commit }, shopId) {
+      const response = await ShopService.fetchShopDetails(shopId)
+      const { shopDetails }= response.data
+      commit('setShopDetails', shopDetails)
+    },
     setLoadingValue({ commit }, val) {
       commit('setLoadingValue', val)
     },
     resetShopsValue({ commit }) {
       commit('setShops', [])
+      commit('setShopDetails', undefined)
     },
     setErrorMessage({ commit }, message) {
       commit('setErrorMessage', message)
