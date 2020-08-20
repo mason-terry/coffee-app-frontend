@@ -1,0 +1,16 @@
+{
+  "name": "Coffee Power",
+  "short_name": "Coffee Power",
+  "description": "Coffee shop app that lets you search for coffee shops that let you rechagre your self and your laptop.",
+  "icons": [
+    {
+      "src": "./icons/Icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "#6060ff",
+  "background_color": "#6060ff"
+}
